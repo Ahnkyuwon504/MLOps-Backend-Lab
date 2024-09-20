@@ -1,0 +1,10 @@
+# Redis 이미지를 다운로드
+docker pull redis
+
+# Redis 컨테이너를 실행
+docker run -d --name redis-server -p 6379:6379 redis
+
+# Redis python
+redis-connect.py
+
+docker rm redis-server
