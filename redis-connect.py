@@ -2,15 +2,15 @@ import redis
 import time
 
 # Redis 클라이언트 연결 (Docker로 실행 중인 Redis 서버에 연결)
-r = redis.redis(host='localhost', port=6379, db=0)
+r = redis.Redis(host='localhost', port=6379, db=0)
 
 # 세션과 같은 데이터 저장 (세션 만료를 위해 TTL 설정)
-session_key = 'user_session'
-session_value = 'session_data'
+session_key = 'kyu_session_key'
+session_val = 'kyu_session_val'
 
 # 10초 동안 유효한 세션 설정
-r.setex(session_key, 10, session_value)
-print(f"세션 저장: {session_key} -> {session_value}")
+r.setex(session_key, 10, session_val)
+print(f"세션 저장: {session_key} -> {session_val}")
 
 # 세션 데이터 가져오기
 stored_session = r.get(session_key)
