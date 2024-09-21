@@ -9,6 +9,8 @@ https://aws.amazon.com/ko/elasticache/what-is-redis/
 
 https://milvus.io/
 
+- etcd
+
 
 - bedrock
 
