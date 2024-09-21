@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  # 19530: Milvus 서버 통신포트
+  # 9091: Milvus 대시보드 포트
+  milvus:
+    image: milvusdb/milvus:v2.3.0
+    container_name: milvus-standalone
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    command: ["milvus", "run", "mixture"]
+
+  redis:
+    image: redis
+    container_name: redis-server
+    ports:
+      - "6379:6379"

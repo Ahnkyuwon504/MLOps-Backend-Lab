@@ -77,7 +77,7 @@ sudo apt-get update
 - docker 설치
 
 ```
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
 ```
 
 - 현재 사용자를 docker그룹에 추가
@@ -128,4 +128,19 @@ pip freeze > requirements.txt
 
 ```
 pip install -r requirements.txt
+```
+
+### docker-compose
+
+- 실행
+
+```
+docker-compose up -d
+```
+
+- error log확인
+
+```
+docker logs milvus-standalone
+docker ps -a
 ```
