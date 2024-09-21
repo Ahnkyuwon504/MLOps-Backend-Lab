@@ -61,16 +61,8 @@ $ sudo apt install python3-venv
 # 가상환경 생성
 $ python3 -m venv kyuenv
 
-##############################################
-## redis
-##############################################
-# Redis 이미지를 다운로드
-docker pull redis
+# 추출
+$ pip freeze > requirements.txt
 
-# Redis 컨테이너를 실행
-docker run -d --name redis-server -p 6379:6379 redis
-
-# Redis python
-redis-connect.py
-
-docker rm redis-server
+# 설치
+$ pip install -r requirements.txt
