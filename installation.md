@@ -141,6 +141,36 @@ docker-compose up -d
 - error log확인
 
 ```
-docker logs milvus-standalone
+docker-compose ps
 docker ps -a
+docker logs milvus-standalone
+docker network ls
+```
+
+- 포트 LISTEN확인
+
+```
+sudo lsof -i :19530
+```
+
+- 컨테이너 접속
+
+```
+docker exec -it etcd /bin/sh
+
+netstat -tuln | grep 2379
+ss -tuln | grep 2379
+lsof -i :2379
+```
+
+- curl
+
+```
+curl -L http://localhost:2379/v3/kv/range -X POST -d '{"key": "a2V5"}' --header "Content-Type: application/json"
+```
+
+- 종료
+
+```
+docker-compose down
 ```
