@@ -47,6 +47,9 @@ kubectl delete deployment <배포 이름>
 # 노드포트로 노출
 kubectl expose deployment hello-minikube --type=NodePort --port=8080
 
+# 서비스 리스트 확인
+kubectl get services
+
 # 서비스 확인
 minikube service <서비스 이름>
 
@@ -56,9 +59,6 @@ minikube service <서비스 이름>
 |-----------|----------------|-------------|---------------------------|
 | default   | hello-minikube |        8080 | http://{IPv4}:32176 |
 |-----------|----------------|-------------|---------------------------|
-
-# 서비스 리스트 확인
-kubectl get services
 
 # 서비스 삭제
 kubectl delete service <서비스 이름>
