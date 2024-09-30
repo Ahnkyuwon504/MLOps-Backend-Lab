@@ -63,5 +63,11 @@ kubectl get services
 # 서비스 삭제
 kubectl delete service <서비스 이름>
 
+# 에코서버에 요청
+curl http://{IPv4}:32176
 
+# exit
+minikube stop
 
+# delete vm
+minikube delete
