@@ -1,0 +1,27 @@
+# kops install
+curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+chmod +x kops
+sudo mv kops /usr/local/bin/kops
+
+# aws cli util
+sudo apt install awscli
+
+# 확인
+aws
+
+# AWS/IAM/ADD USER/ADMINISTRATOR ACCESS 부여 -> 액세스 키 생성
+# Key ID / Access Key / 리전:ap-northeast-2
+aws configure
+
+# 확인
+ls -alh ~/.aws/
+
+# AWS/S3/new bucket
+이름: kops-state-kyu1
+리전:ap-northeast-2
+
+# AWS/Route53
+# 도메인 등록->호스팅 영역 자동 생성
+호스팅존: kubernetes.{domain name}
+
+
