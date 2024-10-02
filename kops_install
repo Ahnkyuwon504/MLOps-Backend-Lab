@@ -21,7 +21,23 @@ ls -alh ~/.aws/
 리전:ap-northeast-2
 
 # AWS/Route53
-# 도메인 등록->호스팅 영역 자동 생성
-호스팅존: kubernetes.{domain name}
+# 도메인 등록->호스팅 영역 자동 생성 -> 네임서버 확인(DNS의 일부로, 도메인과 실제 서버 IP 주소 간의 매핑)
 
+# 로그인 위해 ssh key 생성
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/test_key
+
+# kubernetes 클러스터 생성
+export NAME=kkyuu.com
+export REGION="ap-northeast-2a"
+export KOPS_STATE_STORE="s3://kops-state-kyu1"
+export NODE_SIZE="t2.medium"
+
+kops create cluster \
+  --name=$NAME \
+  --state=$KOPS_STATE_STORE \
+  --zones=$REGION \
+  --node-count=2 \
+  --node-size=$NODE_SIZE \
+  --control-plane-size=$NODE_SIZE \
+  --dns-zone=$NAME
 
