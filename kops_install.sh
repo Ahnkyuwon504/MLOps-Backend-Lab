@@ -41,3 +41,7 @@ kops create cluster \
   --control-plane-size=$NODE_SIZE \
   --dns-zone=$NAME
 
+  # 확인
+  kops get cluster --name=$NAME --state=$KOPS_STATE_STORE
+
+
