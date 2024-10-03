@@ -1,3 +1,11 @@
+# kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# kubectl version
+kubectl version
+
+#############################################################
 # kops install
 curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
 chmod +x kops
@@ -41,7 +49,85 @@ kops create cluster \
   --control-plane-size=$NODE_SIZE \
   --dns-zone=$NAME
 
-  # 확인
-  kops get cluster --name=$NAME --state=$KOPS_STATE_STORE
+# 확인
+kops --help
+kops get cluster --name=$NAME --state=$KOPS_STATE_STORE
+kops get cluster --name=$NAME -o yaml
+
+# 설정 편집
+kops edit cluster --name=$NAME --state=$KOPS_STATE_STORE
+
+# 실행
+kops update cluster --name=$NAME --state=$KOPS_STATE_STORE --yes
+
+    Cluster is starting.  It should be ready in a few minutes.
+
+    Suggestions:
+    * validate cluster: kops validate cluster --wait 10m
+    * list nodes: kubectl get nodes --show-labels
+    * ssh to a control-plane node: ssh -i ~/.ssh/id_rsa ubuntu@api.kkyuu.com
+    * the ubuntu user is specific to Ubuntu. If not using Ubuntu please use the appropriate user based on your OS.
+
+# 확인
+cat ~/.kube/config
+
+# 실행 확인(실패)
+kops validate cluster --name=$NAME
+
+# 노드 확인(실패)
+kubectl get node
+
+# kubectl 현재 설정된 컨텍스트 확인
+kubectl config view
+
+# kubectl에 동기화
+kops export kubecfg --name=$NAME --state=$KOPS_STATE_STORE --admin
+
+# 실행 확인(성공)
+kops validate cluster --name=$NAME
+
+# 노드 확인(성공)
+kubectl get node
+
+#############################################################
+# 배포
+kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
+
+# 배포확인
+kubectl get deployments
+
+# 배포 상세확인
+kubectl describe deployment hello-minikube
+
+# 배포삭제
+kubectl delete deployment <배포 이름>
+
+# 노드포트로 노출
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+# 서비스 리스트 확인
+kubectl get services
+
+# 서비스 확인
+minikube service <서비스 이름>
+
+    NAME                 TYPE            CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+    hello-minikube   NodePort    {cluster IPv4}   <none>            8080:31938/TCP   5s
+
+# ec2 인스턴스 오토 스케일링 그룹 확인
+# ec2 인스턴스의 인바운드 규칙 편집:31938포트
+이후 공인IP:31938 포트로 접속. 어차피 같은 보안그룹을 사용하기 때문에 둘다 적용됨.
+
+# 클러스터 삭제
+kops delete cluster --name=$NAME # 삭제대상 확인
+kops delete cluster --name=$NAME --state=$KOPS_STATE_STORE --yes
+
+
+
+
+
+
+
+
 
 
