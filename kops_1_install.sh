@@ -121,13 +121,3 @@ minikube service <서비스 이름>
 # 클러스터 삭제
 kops delete cluster --name=$NAME # 삭제대상 확인
 kops delete cluster --name=$NAME --state=$KOPS_STATE_STORE --yes
-
-
-
-
-
-
-
-
-
-
