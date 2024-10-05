@@ -49,3 +49,7 @@ kubectl create -f helloworld-service.yml
 # 트래픽을 파드로 리디렉션
 # 따라서 인스턴스의 보안 그룹과는 관계 없음
 # 로드밸런서에 매핑된 보안 그룹(elb 자동 생성)
+
+kubectl delete service helloworld-service
+kops delete cluster --name=$NAME # 삭제대상 확인
+kops delete cluster --name=$NAME --state=$KOPS_STATE_STORE --yes
