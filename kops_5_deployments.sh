@@ -12,3 +12,9 @@ kubectl rollout status deployment/{배포객체명} # status of rollout
 kubectl rollout history deployment/{배포객체명}
 # rollback
 kubectl rollout undo deployment/{배포객체명} --to-revision=n
+
+
+# yml
+cat deployment/helloworld.yml
+
+

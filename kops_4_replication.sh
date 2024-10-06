@@ -61,3 +61,5 @@ kubectl get pods
     helloworld-controller-stdm8   1/1     Running       0          7m9s
 
 kubectl delete rc/helloworld-controller
+
+git log --name-only origin/main..HEAD
