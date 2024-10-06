@@ -117,7 +117,3 @@ minikube service <서비스 이름>
 # ec2 인스턴스 오토 스케일링 그룹 확인
 # ec2 인스턴스의 인바운드 규칙 편집:31938포트
 이후 공인IP:31938 포트로 접속. 어차피 같은 보안그룹을 사용하기 때문에 둘다 적용됨.
-
-# 클러스터 삭제
-kops delete cluster --name=$NAME # 삭제대상 확인
-kops delete cluster --name=$NAME --state=$KOPS_STATE_STORE --yes

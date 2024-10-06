@@ -32,7 +32,7 @@ kops export kubecfg --name=$NAME --state=$KOPS_STATE_STORE --admin
 kops validate cluster --name=$NAME
 
 # 노드 확인(성공)
-kubectl get node
+kubectl get node 
 
 # 파드
 kubectl create -f helloworld.yml
