@@ -1,6 +1,9 @@
 # MLOps-Backend-Lab
 
 구현 및 성능실험 대상:
+
+- k8s <<< now
+
 - redis
 
 https://aws.amazon.com/ko/elasticache/what-is-redis/
@@ -10,7 +13,6 @@ https://aws.amazon.com/ko/elasticache/what-is-redis/
 https://milvus.io/
 
 - etcd
-
 
 - bedrock
 
