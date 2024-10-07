@@ -14,3 +14,9 @@ kubectl describe pods {pod name}
 # 편집
 kubectl edit
 kubectl edit deployment/helloworld-deployment
+
+## liveness && 모니터링
+kubectl create -f deployment/helloworld-healthcheck.yml && watch -n1 kubectl get pods
+## readiness && 모니터링
+# 시간차 존재
+kubectl create -f deployment/helloworld-liveness-readiness.yml && watch -n1 kubectl get pods
